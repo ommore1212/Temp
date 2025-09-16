@@ -7,6 +7,18 @@ video.addEventListener("timeupdate", () => {
     video.play();
   }
 });
+window.addEventListener("load", () => {
+  const video = document.getElementById("bg-video");
+
+  // Wait for video to be ready
+  video.oncanplaythrough = () => {
+    // Small delay for smooth transition
+    setTimeout(() => {
+      document.getElementById("preloader").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 1000);
+  };
+});
 
 // Floating hearts (still works)
 function createHeart() {
@@ -18,3 +30,4 @@ function createHeart() {
   setTimeout(() => heart.remove(), 5000);
 }
 setInterval(createHeart, 400);
+
