@@ -1,5 +1,22 @@
 // Video 6-second loop
 const video = document.getElementById("bg-video");
+const video = document.getElementById("bg-video");
+const preloader = document.getElementById("preloader");
+const mainContent = document.getElementById("main-content");
+const startBtn = document.getElementById("start-btn");
+
+// Wait for video to load enough
+video.oncanplaythrough = () => {
+  startBtn.style.display = "block"; // Show button
+};
+
+// When user taps button
+startBtn.addEventListener("click", () => {
+  preloader.style.display = "none";   // Hide preloader
+  mainContent.style.display = "block"; // Show site
+  video.muted = false;                // Enable sound
+  video.play();                       // Play with audio
+});
 
 video.addEventListener("timeupdate", () => {
   if (video.currentTime > 6) {
@@ -30,4 +47,5 @@ function createHeart() {
   setTimeout(() => heart.remove(), 5000);
 }
 setInterval(createHeart, 400);
+
 
